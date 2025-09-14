@@ -1,0 +1,254 @@
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Night Sky Gradient Background */
+.night-sky-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, 
+    rgba(30, 60, 120, 0.3) 0%,
+    rgba(15, 35, 80, 0.6) 30%,
+    rgba(8, 20, 50, 0.8) 60%,
+    rgba(4, 10, 25, 0.95) 100%);
+}
+
+/* Nebula Effects */
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: nebulaPulse 8s ease-in-out infinite alternate;
+}
+
+.nebula-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.nebula-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(30, 144, 255, 0.3) 0%, transparent 70%);
+  top: 60%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.nebula-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 20, 147, 0.2) 0%, transparent 70%);
+  bottom: 20%;
+  left: 60%;
+  animation-delay: 6s;
+}
+
+@keyframes nebulaPulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 0.2;
+  }
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.star-layer-0 {
+  animation-duration: 2s;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(135, 206, 250, 0.4);
+}
+
+.star-layer-1 {
+  animation-duration: 3s;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7), 0 0 12px rgba(255, 182, 193, 0.3);
+}
+
+.star-layer-2 {
+  animation-duration: 4s;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(221, 160, 221, 0.2);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Shooting Stars */
+.shooting-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, white, transparent);
+  border-radius: 50%;
+  animation: shootingStar 2s linear forwards;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+  transform: translateY(-50%);
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(300px) translateY(300px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(400px) translateY(400px) scale(0);
+  }
+}
+
+/* Special Effects for Different Star Types */
+.star:nth-child(3n) {
+  animation-name: twinkleBlue;
+  box-shadow: 0 0 6px rgba(135, 206, 250, 0.8), 0 0 12px rgba(135, 206, 250, 0.4);
+}
+
+.star:nth-child(5n) {
+  animation-name: twinklePink;
+  box-shadow: 0 0 6px rgba(255, 182, 193, 0.8), 0 0 12px rgba(255, 182, 193, 0.4);
+}
+
+.star:nth-child(7n) {
+  animation-name: twinkleYellow;
+  box-shadow: 0 0 6px rgba(255, 255, 0, 0.8), 0 0 12px rgba(255, 255, 0, 0.4);
+}
+
+@keyframes twinkleBlue {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: hue-rotate(20deg);
+  }
+}
+
+@keyframes twinklePink {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: hue-rotate(-20deg);
+  }
+}
+
+@keyframes twinkleYellow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: hue-rotate(10deg);
+  }
+}
+
+/* Floating Particles */
+.star-field::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 160px 30px, rgba(255, 255, 255, 0.1), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkles 20s linear infinite;
+}
+
+@keyframes sparkles {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+/* Performance Optimizations */
+.star-field * {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nebula-1 {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .nebula-2 {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .nebula-3 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .shooting-star::before {
+    width: 30px;
+  }
+}
